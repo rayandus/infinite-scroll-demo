@@ -23,6 +23,6 @@ ___
 
 Those are the requirements. If you wish to show off more of your skillset, feel free to expand upon the app, perhaps integrating a state management library like Redux to handle the fetching of data. Using TypeScript will be a big ➕. If you're really into functional programming, feel free to use something like Ramda. It's really up to you!
 
-We put no strict requirements on how you choose to solve any of the points in this task apart from the requirement that you use Animated to implement the loading indicator. We only ask that you be able to motivate your choices.
+We put no strict requirements on how you choose to solve any of the points in this task. We only ask that you be able to motivate your choices.
 
 ![You got this!](https://media.giphy.com/media/ClcWrARkrq1GM/giphy.gif)
