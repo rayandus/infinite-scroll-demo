@@ -1,68 +1,28 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Ombori React Code Test
 
-## Available Scripts
+Hi there, we're really excited that you've made it this far in our interview process and look forward to getting to know you better.
 
-In the project directory, you can run:
+At Ombori, we strive to build fantastic apps using well structured and efficient code.
+The purpose of this task is to see how you solve problems and to make sure that you follow our linting rules as well as industry best practices.
 
-### `yarn start`
+We've scaffolded a very basic project that will serve as your starting point for the task.
+Make sure you've got eslint integrated in your editor or run the lint task and fix any errors before submitting your code for review. If there's a rule you disagree with, you can change it but we will ask you to motivate why during our feedback session on this task.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+___
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+What the test app should do:
 
-### `yarn test`
+* Display a custom loading component for 3 seconds
+* Fetch user data from https://reqres.in/
+* Display those users in a scrollable view that lazy loads more users when you've reached the bottom of the list, if there are no more users to load it should indicate that there are no more users.
+* Be responsive, look great and work well on different devices, especially various mobile screens
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+We've prepared some screenshots in the design folder as well as a video of what the loading component should look like.
 
-### `yarn build`
+___
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Those are the requirements. If you wish to show off more of your skillset, feel free to expand upon the app, perhaps integrating a state management library like Redux to handle the fetching of data. Using TypeScript will be a big ➕. If you're really into functional programming, feel free to use something like Ramda. It's really up to you!
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+We put no strict requirements on how you choose to solve any of the points in this task apart from the requirement that you use Animated to implement the loading indicator. We only ask that you be able to motivate your choices.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+![You got this!](https://media.giphy.com/media/ClcWrARkrq1GM/giphy.gif)
