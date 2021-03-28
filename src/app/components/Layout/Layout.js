@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core';
 import clsx from 'clsx';
-// import { DRAWER_WIDTH } from 'app/constants/constants';
 import { SplashScreen } from 'app/components/shared';
 import UsersApp from 'app/components/users/UsersApp';
 import HeaderBar from './HeaderBar';
