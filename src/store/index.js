@@ -1,4 +1,5 @@
 /* eslint-disable import/extensions */
+/* eslint-disable import/no-duplicates */
 import * as reduxModule from 'redux';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
