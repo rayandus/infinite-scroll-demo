@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 // import { ThemeProvider } from '@material-ui/core/styles';
 import Provider from 'react-redux/es/components/Provider';
