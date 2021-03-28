@@ -24,18 +24,18 @@ const useStyles = makeStyles(() => {
     pulsing: {
       '&:before,&:after': {
         position    : 'absolute',
-        top         : '-15px',
-        left        : '-15px',
-        width       : '50px',
-        height      : '50px',
+        top         : '-65px',
+        left        : '-65px',
+        width       : '150px',
+        height      : '150px',
         borderRadius: '50%',
         content     : '""',
-        boxShadow   : 'inset 0 0 0 20px #7fb900',
+        boxShadow   : 'inset 0 0 0 50px #7fb900',
         transition  : 'transform 0.2s, opacity 0.2s',
-        animation   : '$pulsing 1s infinite',
+        animation   : '$pulsing 1.25s infinite',
       },
       '&:after': {
-        animation: '$pulsing 1.25s infinite',
+        animation: '$pulsing 1.5s infinite',
       },
     },
     '@keyframes pulsing': {
@@ -45,8 +45,13 @@ const useStyles = makeStyles(() => {
       },
       '100%': {
         transform: 'scale(1.5)',
-        opacity  : '0.05',
+        opacity  : '0',
       },
+    },
+    logo: {
+      position: 'absolute',
+      top     : '-40px',
+      left    : '-40px',
     },
   };
 });
@@ -57,6 +62,7 @@ const SplashScreen = () => {
   return (
     <div className={classes.splashPanel}>
       <div className={clsx(classes.splashIcon, classes.pulsing)} />
+      <img className={classes.logo} width="100" src="assets/images/logos/aoe.png" alt="logo" />
     </div>
   );
 };

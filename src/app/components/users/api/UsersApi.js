@@ -10,7 +10,7 @@ class UsersApi {
           resolve(response.data);
         }).catch((error) => {
           if (error.response) {
-            reject(error.response.data.error);
+            reject(error.response.data);
           }
           reject(error);
         });

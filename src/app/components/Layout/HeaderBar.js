@@ -33,6 +33,13 @@ const useStyles = makeStyles((theme) => {
     hide: {
       display: 'none',
     },
+    appBarTitle: {
+      flexGrow: 1,
+      align   : 'center',
+    },
+    placeHolder: {
+      width: '2.5em',
+    },
   };
 });
 
@@ -56,9 +63,10 @@ const HeaderBar = ({
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" noWrap>
-          Ombori Exercise
+        <Typography className={classes.appBarTitle} variant="h6" noWrap>
+          Ombori Users
         </Typography>
+        <div className={classes.placeHolder} />
       </Toolbar>
     </AppBar>
   );

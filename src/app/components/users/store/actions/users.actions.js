@@ -14,20 +14,16 @@ export function getUsers(pageSize = PAGE_SIZE) {
 
   return (dispatch) => {
     return request.then((response) => {
-      return dispatch({
-        ok     : true,
+      dispatch({
         type   : actionType.USERS_GET_LIST,
         payload: {
           data: response,
         },
       });
+      return Promise.resolve(); // add param if needed
     })
       .catch((error) => {
-        return dispatch({
-          ok   : false,
-          type : actionType.USERS_ERROR,
-          error: error.error,
-        });
+        return Promise.reject(new Error(error));
       });
   };
 }

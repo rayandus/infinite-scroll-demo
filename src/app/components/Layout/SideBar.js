@@ -14,7 +14,6 @@ import {
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import InfoIcon from '@material-ui/icons/Info';
-import NewReleasesIcon from '@material-ui/icons/NewReleases';
 import { DRAWER_WIDTH } from 'app/constants/constants';
 
 const useStyles = makeStyles((theme) => {
@@ -61,12 +60,6 @@ const SideBar = ({
       </div>
       <Divider />
       <List>
-        <ListItem button>
-          <ListItemIcon>
-            <NewReleasesIcon />
-          </ListItemIcon>
-          <ListItemText primary="Release Notes" />
-        </ListItem>
         <ListItem button>
           <ListItemIcon>
             <InfoIcon />

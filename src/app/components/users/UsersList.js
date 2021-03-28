@@ -43,13 +43,13 @@ const UsersList = ({
 
 UsersList.propTypes = {
   total    : PropTypes.number,
-  users    : PropTypes.oneOfType([PropTypes.object]),
+  users    : PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   isLoading: PropTypes.bool,
 };
 
 UsersList.defaultProps = {
   total    : 0,
-  users    : {},
+  users    : [],
   isLoading: false,
 };
 

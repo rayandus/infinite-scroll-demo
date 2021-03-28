@@ -5,7 +5,13 @@ import PropTypes from 'prop-types';
 import withReducer from 'store/withReducer';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import {
+  Button,
+  CircularProgress,
+} from '@material-ui/core';
+import AutorenewIcon from '@material-ui/icons/Autorenew';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { CustomSnackbar } from 'app/components/shared';
 import { PAGE_SIZE } from 'app/constants/users/users.constants';
 import UsersList from './UsersList';
 import * as actions from './store/actions';
@@ -15,8 +21,9 @@ class UsersApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true,
-      pageSize : PAGE_SIZE,
+      isLoading : true,
+      pageSize  : 0,
+      showReload: false,
     };
   }
 
@@ -24,7 +31,14 @@ class UsersApp extends Component {
     const { getUsers } = this.props;
     getUsers()
       .then(() => {
-        this.setState({ isLoading: false });
+        this.setState({
+          isLoading : false,
+          pageSize  : PAGE_SIZE,
+          showReload: false,
+        });
+      })
+      .catch(() => {
+        this.setState({ showReload: true });
       });
   }
 
@@ -32,15 +46,45 @@ class UsersApp extends Component {
     const { getUsers } = this.props;
     const { pageSize } = this.state;
 
-    this.setState({ isLoading: true });
+    this.setState({ isLoading: true, showReload: false });
     getUsers(pageSize + PAGE_SIZE)
       .then(() => {
         this.setState({
-          isLoading: false,
-          pageSize : pageSize + PAGE_SIZE,
+          isLoading : false,
+          pageSize  : pageSize + PAGE_SIZE,
+          showReload: false,
         });
+      })
+      .catch(() => {
+        this.setState({ showReload: true });
       });
   };
+
+  getLoader = (isLoading, showReload) => {
+    let loader = null;
+
+    if (showReload) {
+      loader = (
+        <Button
+          variant="text"
+          onClick={this.handleFetchData}
+          style={{ textTransform: 'none' }}
+        >
+          <AutorenewIcon size={15} style={{ marginRight: '0.5rem' }} />
+          Something went wrong. Try again.
+        </Button>
+      );
+    } else if (isLoading) {
+      loader = (
+        <>
+          <CircularProgress size={15} style={{ marginRight: '0.5rem' }} />
+          Patience is a virtue. Fetching more users.
+        </>
+      );
+    }
+
+    return loader && <div style={{ margin: '1rem 1rem 0 1rem', padding: '1rem' }}>{loader}</div>;
+  }
 
   render() {
     const {
@@ -50,23 +94,31 @@ class UsersApp extends Component {
     } = this.props;
     const {
       isLoading,
+      showReload,
       pageSize,
     } = this.state;
 
     return (
-      <InfiniteScroll
-        dataLength={pageSize}
-        next={this.handleFetchData}
-        hasMore={!isLastPage}
-        loader={isLoading && (<div style={{ marginTop: '2rem' }}>Vänta! Loading...</div>)}
-      >
-        <UsersList
-          total={total}
-          users={users}
-          isLoading={isLoading}
+      <>
+        <InfiniteScroll
+          dataLength={pageSize}
+          next={this.handleFetchData}
+          hasMore={!isLastPage}
+          loader={this.getLoader(isLoading, showReload, isLastPage)}
+          endMessage={<div style={{ margin: '1rem 1rem 0 1rem', padding: '1rem' }}>That&apos;s all we got!</div>}
+        >
+          <UsersList
+            total={total}
+            users={users}
+            isLoading={isLoading}
+          />
+        </InfiniteScroll>
+        <CustomSnackbar
+          open={showReload}
+          severity="error"
+          message="Something went wrong. Please try again later."
         />
-        { isLastPage && (<div style={{ marginTop: '2rem' }}>That&apos;s all we got!</div>) }
-      </InfiniteScroll>
+      </>
     );
   }
 }
@@ -80,7 +132,7 @@ UsersApp.propTypes = {
 
 UsersApp.defaultProps = {
   getUsers  : () => {},
-  users     : {},
+  users     : [],
   isLastPage: false,
   total     : 0,
 };
