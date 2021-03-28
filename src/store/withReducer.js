@@ -14,12 +14,10 @@ const withReducer = (key, reducer) => {
       render() {
         return (
           <ReactReduxContext.Consumer>
-            {({ store, storeState }) => {
-              // if(key === 'usersApp')
-              // console.log('usersApp', storeState[key]);
-              // eslint-disable-next-line react/jsx-props-no-spreading
+            {() => {
               // return storeState && storeState[key] ? <WrappedComponent {...this.props} /> : null;
               // To Do: Expected to check storeState
+              // eslint-disable-next-line react/jsx-props-no-spreading
               return <WrappedComponent {...this.props} />;
             }}
           </ReactReduxContext.Consumer>

@@ -1,5 +1,4 @@
 /* eslint-disable import/extensions */
-import { ContactSupportOutlined } from '@material-ui/icons';
 import * as reduxModule from 'redux';
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
@@ -32,10 +31,8 @@ export const injectReducer = (key, reducer) => {
   }
   store.asyncReducers[key] = reducer;
   store.replaceReducer(createReducer(store.asyncReducers));
-  // if(key === 'usersApp')
-  // console.log('usersApp', store);
-  // eslint-disable-next-line consistent-return
 
+  // eslint-disable-next-line consistent-return
   return store;
 };
 
