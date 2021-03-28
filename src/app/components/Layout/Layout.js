@@ -41,7 +41,7 @@ const styles = (theme) => {
   };
 };
 
-class LayoutCont extends Component {
+class Layout extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -92,12 +92,12 @@ class LayoutCont extends Component {
   }
 }
 
-LayoutCont.propTypes = {
+Layout.propTypes = {
   classes: PropTypes.oneOfType([PropTypes.object]),
 };
 
-LayoutCont.defaultProps = {
+Layout.defaultProps = {
   classes: {},
 };
 
-export default withStyles(styles, { withTheme: true })(LayoutCont);
+export default withStyles(styles, { withTheme: true })(Layout);
