@@ -1,9 +1,10 @@
 {
   "name": "react-code-test",
   "version": "0.1.0",
+  "homepage": "https://rayandus.github.io/infinite-scroll-demo",
   "private": true,
   "engines": {
-    "node": "14.18.2"
+    "node": "16.3.0"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.3",
@@ -30,13 +31,15 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.23.1",
-    "eslint-plugin-react-hooks": "^4.2.0"
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "gh-pages": "^6.1.1"
   },
   "scripts": {
     "preinstall": "npx only-allow yarn",
     "preupdate": "npx only-allow yarn",
     "start": "react-scripts start",
     "build": "eslint ./src && react-scripts build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "lint": "eslint ./src",
     "eject": "react-scripts eject"
