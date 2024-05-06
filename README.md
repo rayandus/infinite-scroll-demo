@@ -1,28 +1,66 @@
-# Ombori React Code Test
+# Infinite Scroll Demo
 
-Hi there, we're really excited that you've made it this far in our interview process and look forward to getting to know you better.
+The goal of this personal project is to create a web application that utilizes the concept of infinite scrolling. Infinite scrolling is an interaction design pattern where content loads continuously as the user scrolls down the page, allowing the user to explore a large amount of content. This design pattern is often used on social media platforms and feeds where content has no definite end.
 
-At Ombori, we strive to build fantastic apps using well structured and efficient code.
-The purpose of this task is to see how you solve problems and to make sure that you follow our linting rules as well as industry best practices.
+## Project Overview
 
-We've scaffolded a very basic project that will serve as your starting point for the task.
-Make sure you've got eslint integrated in your editor or run the lint task and fix any errors before submitting your code for review. If there's a rule you disagree with, you can change it but we will ask you to motivate why during our feedback session on this task.
+This project is built with:
 
-___
+<table cellpadding="0" cellspacing="0">
+  <tr style="padding: 0">
+    <td valign="top" align="center">
+        <img src="https://github.com/rayandus/my-portfolio/blob/main/public/reactjs.svg" width="50" height="50">
+        <br />
+        Reactjs
+    </td>
+    <td valign="top" align="center">
+        <img src="https://github.com/rayandus/my-portfolio/blob/main/public/redux.svg" width="50" height="50">
+        <br />
+        Redux
+    </td>
+    <td valign="top" align="center">
+        <img src="https://github.com/rayandus/my-portfolio/blob/main/public/javascript.svg" width="50" height="50">
+        <br />
+        Javascript
+    </td>
+    <td valign="top" align="center">
+        <img src="https://github.com/rayandus/my-portfolio/blob/main/public/material-ui.svg" width="50" height="50">
+        <br />
+        Material UI
+    </td>
+  </tr>
+</table>
 
-What the test app should do:
+## Set-up Prerequisite
 
-* Display a custom loading component for 3 seconds
-* Fetch user data from https://reqres.in/
-* Display those users in a scrollable view that lazy loads more users when you've reached the bottom of the list, if there are no more users to load it should indicate that there are no more users.
-* Be responsive, look great and work well on different devices, especially various mobile screens
+1. Node Version Manager (nvm)
+1. Yarn
 
-We've prepared some screenshots in the design folder as well as a video of what the loading component should look like.
+## Setup
 
-___
+1. Clone [infinite-scroll-demo](git@github.com:rayandus/infinite-scroll-demo.git) repo in your local
 
-Those are the requirements. If you wish to show off more of your skillset, feel free to expand upon the app, perhaps integrating a state management library like Redux to handle the fetching of data. Using TypeScript will be a big ➕. If you're really into functional programming, feel free to use something like Ramda. It's really up to you!
+1. Go to project root directory and install
 
-We put no strict requirements on how you choose to solve any of the points in this task. We only ask that you be able to motivate your choices.
+   ```bash
+   cd infinite-scroll-demo
+   git checkout main
+   nvm install
+   yarn install
+   ```
 
-![You got this!](https://media.giphy.com/media/ClcWrARkrq1GM/giphy.gif)
+1. Start the application
+
+   ```bash
+   yarn start
+   ```
+
+   > The app will run on port `3000`. E.g. `http://localhost:3000`
+
+   or
+
+   ```bash
+   PORT=3000 pnpm start:dev
+   ```
+
+   > Just replace `PORT=3000` to your choice of port
