@@ -64,7 +64,7 @@ const HeaderBar = ({
           <MenuIcon />
         </IconButton>
         <Typography className={classes.appBarTitle} variant="h6" noWrap>
-          Ombori Users
+          List
         </Typography>
         <div className={classes.placeHolder} />
       </Toolbar>

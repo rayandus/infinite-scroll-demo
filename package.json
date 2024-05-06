@@ -33,8 +33,8 @@
     "eslint-plugin-react-hooks": "^4.2.0"
   },
   "scripts": {
-    "preinstall": "npx --yes only-allow yarn",
-    "preupdate": "npx --yes only-allow yarn",
+    "preinstall": "npx only-allow yarn",
+    "preupdate": "npx only-allow yarn",
     "start": "react-scripts start",
     "build": "eslint ./src && react-scripts build",
     "test": "react-scripts test",
