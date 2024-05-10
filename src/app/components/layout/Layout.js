@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core';
 import clsx from 'clsx';
 import { SplashScreen } from 'app/components/shared';
-// import UsersApp from 'app/components/users/UsersApp';
 import PokemonsApp from 'app/components/pokemons/PokemonsApp';
 import HeaderBar from './HeaderBar';
 import SideBar from './SideBar';
