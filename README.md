@@ -1,4 +1,4 @@
-# Infinite Scroll Demo
+# Pokemon Infinite Scroll Demo
 
 The goal of this personal project is to create a web application that utilizes the concept of infinite scrolling. Infinite scrolling is an interaction design pattern where content loads continuously as the user scrolls down the page, allowing the user to explore a large amount of content. This design pattern is often used on social media platforms and feeds where content has no definite end.
 
@@ -30,6 +30,8 @@ This project is built with:
     </td>
   </tr>
 </table>
+
+This app fetches data from [Pokemon API](https://pokeapi.co/)
 
 ## Set-up Prerequisite
 
