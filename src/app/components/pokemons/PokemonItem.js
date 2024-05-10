@@ -1,18 +1,49 @@
 /* eslint-disable import/no-unresolved */
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
   ListItem,
   Grid,
   Avatar,
   Typography,
+  Chip,
 } from '@material-ui/core';
 import Skeleton from '@material-ui/lab/Skeleton';
 import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(() => {
+  return {
+    avatar: {
+      '& img': {
+        objectFit: 'contain',
+      },
+    },
+    name: {
+      textTransform: 'capitalize',
+    },
+    abilities: {
+      display: 'flex',
+      gap    : '5px',
+    },
+  };
+});
 
 const PokemonItem = ({
   isSkeleton,
   data,
 }) => {
+  const styles = useStyles();
+
+  const abilities = useMemo(() => {
+    if (!data.abilities) {
+      return [];
+    }
+
+    return data.abilities.map((ability) => {
+      return ability.ability.name;
+    });
+  }, [data.abilities]);
+
   return (
     <ListItem
       button
@@ -29,7 +60,7 @@ const PokemonItem = ({
           {
             isSkeleton
               ? <Skeleton variant="circle" width={65} height={65} />
-              : <Avatar src={data.avatar} style={{ width: 65, height: 65 }} />
+              : <Avatar className={styles.avatar} src={data.sprites.other.dream_world.front_default} variant="square" style={{ width: 65, height: 65 }} />
           }
         </Grid>
         <Grid item xs>
@@ -43,8 +74,14 @@ const PokemonItem = ({
               )
               : (
                 <>
-                  <Typography variant="subtitle1">{`${data.first_name} ${data.last_name}`}</Typography>
-                  <Typography variant="caption" color="textSecondary">{data.email}</Typography>
+                  <Typography className={styles.name} variant="subtitle1">{data.name}</Typography>
+                  <div className={styles.abilities}>
+                    {abilities.map((ability) => {
+                      return (
+                        <Chip key={ability} label={ability} variant="outlined" size="small" />
+                      );
+                    })}
+                  </div>
                 </>
               )
           }

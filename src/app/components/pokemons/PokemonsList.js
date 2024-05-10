@@ -6,7 +6,7 @@ import {
 } from '@material-ui/core';
 import { PAGE_LIMIT } from 'app/constants/constants';
 import _ from 'lodash';
-import UserItem from './PokemonItem';
+import PokemonItem from './PokemonItem';
 
 const PokemonsList = ({
   total,
@@ -19,18 +19,19 @@ const PokemonsList = ({
     <>
       <List>
         {_.map(_.keys(pokemons), (id) => {
-          const user = pokemons[id];
+          const pokemon = pokemons[id];
+
           return (
-            <UserItem
+            <PokemonItem
               key={id}
               id={id}
-              data={user}
+              data={pokemon}
             />
           );
         })}
         {isLoading && _.map(_.range(remainingCount), (id) => {
           return (
-            <UserItem
+            <PokemonItem
               key={`skltn-${id}`}
               isSkeleton
             />

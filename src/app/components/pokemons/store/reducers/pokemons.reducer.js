@@ -16,7 +16,7 @@ const usersReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        list      : keyBy(result.data, 'name'),
+        list      : keyBy(result.results, 'name'),
         total     : result.count,
         isLastPage: result.next === null,
       };

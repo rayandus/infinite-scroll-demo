@@ -12,7 +12,7 @@ import {
 import AutorenewIcon from '@material-ui/icons/Autorenew';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { CustomSnackbar } from 'app/components/shared';
-import { PAGE_LIMIT } from 'app/constants/constants';
+import { PAGE_LIMIT, PAGE_OFFSET } from 'app/constants/constants';
 import PokemonsList from './PokemonsList';
 import * as actions from './store/actions';
 import reducer from './store/reducers';
@@ -22,7 +22,7 @@ class PokemonsApp extends Component {
     super(props);
     this.state = {
       isLoading : true,
-      pageSize  : 0,
+      pageSize  : PAGE_OFFSET,
       showReload: false,
     };
   }
@@ -40,8 +40,6 @@ class PokemonsApp extends Component {
       .catch(() => {
         this.setState({ showReload: true });
       });
-
-    fetch();
   }
 
   handleFetchData = () => {
