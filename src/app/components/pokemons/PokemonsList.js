@@ -4,14 +4,11 @@ import PropTypes from 'prop-types';
 import {
   List,
 } from '@material-ui/core';
-import { PAGE_LIMIT } from 'app/constants/constants';
 import _ from 'lodash';
 import PokemonItem from './PokemonItem';
 
 const PokemonsList = ({
-  total,
   pokemons,
-  isLoading,
 }) => {
   return (
     <>
@@ -27,29 +24,17 @@ const PokemonsList = ({
             />
           );
         })}
-        {isLoading && _.map(_.range(PAGE_LIMIT), (id) => {
-          return (
-            <PokemonItem
-              key={`skltn-${id}`}
-              isSkeleton
-            />
-          );
-        })}
       </List>
     </>
   );
 };
 
 PokemonsList.propTypes = {
-  total    : PropTypes.number,
-  pokemons : PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-  isLoading: PropTypes.bool,
+  pokemons: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 };
 
 PokemonsList.defaultProps = {
-  total    : 0,
-  pokemons : [],
-  isLoading: false,
+  pokemons: [],
 };
 
 export default PokemonsList;

@@ -21,9 +21,9 @@ class PokemonsApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading : true,
-      pageSize  : PAGE_OFFSET,
-      showReload: false,
+      isLoading: true,
+      pageSize : PAGE_OFFSET,
+      isError  : false,
     };
   }
 
@@ -32,13 +32,13 @@ class PokemonsApp extends Component {
     getPokemons()
       .then(() => {
         this.setState({
-          isLoading : false,
-          pageSize  : PAGE_LIMIT,
-          showReload: false,
+          isLoading: false,
+          pageSize : PAGE_LIMIT,
+          isError  : false,
         });
       })
       .catch(() => {
-        this.setState({ showReload: true });
+        this.setState({ isError: true });
       });
   }
 
@@ -46,45 +46,19 @@ class PokemonsApp extends Component {
     const { getPokemons } = this.props;
     const { pageSize } = this.state;
 
-    this.setState({ isLoading: true, showReload: false });
+    this.setState({ isLoading: true, isError: false });
     getPokemons(pageSize + PAGE_LIMIT)
       .then(() => {
         this.setState({
-          isLoading : false,
-          pageSize  : pageSize + PAGE_LIMIT,
-          showReload: false,
+          isLoading: false,
+          pageSize : pageSize + PAGE_LIMIT,
+          isError  : false,
         });
       })
       .catch(() => {
-        this.setState({ showReload: true });
+        this.setState({ isError: true });
       });
   };
-
-  getLoader = (isLoading, showReload) => {
-    let loader = null;
-
-    if (showReload) {
-      loader = (
-        <Button
-          variant="text"
-          onClick={this.handleFetchData}
-          style={{ textTransform: 'none' }}
-        >
-          <AutorenewIcon size={15} style={{ marginRight: '0.5rem' }} />
-          Something went wrong. Try again.
-        </Button>
-      );
-    } else if (isLoading) {
-      loader = (
-        <>
-          <CircularProgress size={15} style={{ marginRight: '0.5rem' }} />
-          Patience is a virtue. Fetching more users.
-        </>
-      );
-    }
-
-    return loader && <div style={{ margin: '1rem 1rem 0 1rem', padding: '1rem' }}>{loader}</div>;
-  }
 
   render() {
     const {
@@ -94,8 +68,7 @@ class PokemonsApp extends Component {
     } = this.props;
     const {
       isLoading,
-      showReload,
-      // pageSize,
+      isError,
     } = this.state;
 
     return (
@@ -104,13 +77,26 @@ class PokemonsApp extends Component {
           dataLength={total}
           next={this.handleFetchData}
           hasMore={!isLastPage}
-          // loader={this.getLoader(isLoading, showReload)}
-          loader={(
-            <>
-              <CircularProgress size={15} style={{ marginRight: '0.5rem' }} />
-              Catching more pokemons
-            </>
-          )}
+          loader={
+            isError ? (
+              <Button
+                variant="text"
+                onClick={this.handleFetchData}
+                style={{ textTransform: 'none', display: 'flex', margin: 'auto' }}
+              >
+                <AutorenewIcon size={15} style={{ marginRight: '0.5rem' }} />
+                Something went wrong. Try again.
+              </Button>
+            ) : (
+              <div style={{
+                display: 'flex', margin: 'auto', alignItems: 'center', width: 'fit-content',
+              }}
+              >
+                <CircularProgress size={15} style={{ marginRight: '0.5rem' }} />
+                Catching more pokemons
+              </div>
+            )
+          }
           endMessage={<div style={{ margin: '1rem 1rem 0 1rem', padding: '1rem' }}>That&apos;s all we got!</div>}
         >
           <PokemonsList
@@ -120,7 +106,7 @@ class PokemonsApp extends Component {
           />
         </InfiniteScroll>
         <CustomSnackbar
-          open={showReload}
+          open={isError}
           severity="error"
           message="Something went wrong. Please try again later."
         />

@@ -47,7 +47,7 @@ const PokemonItem = ({
 
   return (
     <ListItem
-      button
+      button={false}
       divider
     >
       <Grid
