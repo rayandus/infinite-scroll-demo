@@ -95,16 +95,22 @@ class PokemonsApp extends Component {
     const {
       isLoading,
       showReload,
-      pageSize,
+      // pageSize,
     } = this.state;
 
     return (
       <>
         <InfiniteScroll
-          dataLength={pageSize}
+          dataLength={total}
           next={this.handleFetchData}
           hasMore={!isLastPage}
-          loader={this.getLoader(isLoading, showReload, isLastPage)}
+          // loader={this.getLoader(isLoading, showReload)}
+          loader={(
+            <>
+              <CircularProgress size={15} style={{ marginRight: '0.5rem' }} />
+              Catching more pokemons
+            </>
+          )}
           endMessage={<div style={{ margin: '1rem 1rem 0 1rem', padding: '1rem' }}>That&apos;s all we got!</div>}
         >
           <PokemonsList

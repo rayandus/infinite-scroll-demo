@@ -13,8 +13,6 @@ const PokemonsList = ({
   pokemons,
   isLoading,
 }) => {
-  const remainingCount = (total ? total - PAGE_LIMIT : PAGE_LIMIT);
-
   return (
     <>
       <List>
@@ -29,7 +27,7 @@ const PokemonsList = ({
             />
           );
         })}
-        {isLoading && _.map(_.range(remainingCount), (id) => {
+        {isLoading && _.map(_.range(PAGE_LIMIT), (id) => {
           return (
             <PokemonItem
               key={`skltn-${id}`}

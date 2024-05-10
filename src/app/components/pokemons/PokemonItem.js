@@ -22,8 +22,9 @@ const useStyles = makeStyles(() => {
       textTransform: 'capitalize',
     },
     abilities: {
-      display: 'flex',
-      gap    : '5px',
+      display : 'flex',
+      gap     : '5px',
+      flexWrap: 'wrap',
     },
   };
 });
