@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import users from './users.reducer';
+import pokemons from './pokemons.reducer';
 
 const reducer = combineReducers({
-  users,
+  pokemons,
 });
 
 export default reducer;

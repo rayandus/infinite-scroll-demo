@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import { PAGE_OFFSET, PAGE_LIMIT } from 'app/constants/users/users.constants';
+import { PAGE_OFFSET, PAGE_LIMIT } from 'app/constants/constants';
 import * as actionType from './pokemons.action-types';
 import PokemonsApi from '../../api/PokemonsApi';
 

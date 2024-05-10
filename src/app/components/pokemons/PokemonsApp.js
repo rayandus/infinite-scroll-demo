@@ -12,11 +12,10 @@ import {
 import AutorenewIcon from '@material-ui/icons/Autorenew';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { CustomSnackbar } from 'app/components/shared';
-import { PAGE_SIZE } from 'app/constants/constants';
+import { PAGE_LIMIT } from 'app/constants/constants';
 import PokemonsList from './PokemonsList';
 import * as actions from './store/actions';
 import reducer from './store/reducers';
-import PokeApi from './api/PokemonsApi';
 
 class PokemonsApp extends Component {
   constructor(props) {
@@ -29,12 +28,12 @@ class PokemonsApp extends Component {
   }
 
   componentDidMount() {
-    const { getUsers } = this.props;
-    getUsers()
+    const { getPokemons } = this.props;
+    getPokemons()
       .then(() => {
         this.setState({
           isLoading : false,
-          pageSize  : PAGE_SIZE,
+          pageSize  : PAGE_LIMIT,
           showReload: false,
         });
       })
@@ -42,26 +41,19 @@ class PokemonsApp extends Component {
         this.setState({ showReload: true });
       });
 
-    const fetch = async () => {
-      const list = await PokeApi.getList();
-      const info = await PokeApi.getInfo(list.results[0].name);
-
-      console.log('*** result', info);
-    };
-
     fetch();
   }
 
   handleFetchData = () => {
-    const { getUsers } = this.props;
+    const { getPokemons } = this.props;
     const { pageSize } = this.state;
 
     this.setState({ isLoading: true, showReload: false });
-    getUsers(pageSize + PAGE_SIZE)
+    getPokemons(pageSize + PAGE_LIMIT)
       .then(() => {
         this.setState({
           isLoading : false,
-          pageSize  : pageSize + PAGE_SIZE,
+          pageSize  : pageSize + PAGE_LIMIT,
           showReload: false,
         });
       })
@@ -99,7 +91,7 @@ class PokemonsApp extends Component {
   render() {
     const {
       isLastPage,
-      users,
+      pokemons,
       total,
     } = this.props;
     const {
@@ -117,9 +109,9 @@ class PokemonsApp extends Component {
           loader={this.getLoader(isLoading, showReload, isLastPage)}
           endMessage={<div style={{ margin: '1rem 1rem 0 1rem', padding: '1rem' }}>That&apos;s all we got!</div>}
         >
-          <UsersList
+          <PokemonsList
             total={total}
-            users={users}
+            pokemons={pokemons}
             isLoading={isLoading}
           />
         </InfiniteScroll>
@@ -134,30 +126,30 @@ class PokemonsApp extends Component {
 }
 
 PokemonsApp.propTypes = {
-  getList   : PropTypes.func,
-  pokemons  : PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-  isLastPage: PropTypes.bool,
-  total     : PropTypes.number,
+  getPokemons: PropTypes.func,
+  pokemons   : PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  isLastPage : PropTypes.bool,
+  total      : PropTypes.number,
 };
 
 PokemonsApp.defaultProps = {
-  getList   : () => {},
-  pokemons  : [],
-  isLastPage: false,
-  total     : 0,
+  getPokemons: () => {},
+  pokemons   : [],
+  isLastPage : false,
+  total      : 0,
 };
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    getList: actions.getList,
+    getPokemons: actions.getPokemons,
   }, dispatch);
 }
 
 function mapStateToProps({ pokemonsApp }) {
   return {
-    users     : pokemonsApp.users.list,
-    isLastPage: pokemonsApp.users.isLastPage,
-    total     : pokemonsApp.users.total,
+    pokemons  : pokemonsApp.pokemons.list,
+    isLastPage: pokemonsApp.pokemons.isLastPage,
+    total     : pokemonsApp.pokemons.total,
   };
 }
 

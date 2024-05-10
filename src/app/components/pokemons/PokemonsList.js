@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import {
   List,
 } from '@material-ui/core';
-import { PAGE_LIMIT } from 'app/constants/.constants';
+import { PAGE_LIMIT } from 'app/constants/constants';
 import _ from 'lodash';
 import UserItem from './PokemonItem';
 
 const PokemonsList = ({
   total,
-  users,
+  pokemons,
   isLoading,
 }) => {
   const remainingCount = (total ? total - PAGE_LIMIT : PAGE_LIMIT);
@@ -18,8 +18,8 @@ const PokemonsList = ({
   return (
     <>
       <List>
-        {_.map(_.keys(users), (id) => {
-          const user = users[id];
+        {_.map(_.keys(pokemons), (id) => {
+          const user = pokemons[id];
           return (
             <UserItem
               key={id}
@@ -43,13 +43,13 @@ const PokemonsList = ({
 
 PokemonsList.propTypes = {
   total    : PropTypes.number,
-  users    : PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  pokemons : PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   isLoading: PropTypes.bool,
 };
 
 PokemonsList.defaultProps = {
   total    : 0,
-  users    : [],
+  pokemons : [],
   isLoading: false,
 };
 
